@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const UsersList = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0); 
+  const [totalPages, setTotalPages] = useState(0);
   const [editingUser, setEditingUser] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); 
+
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -188,6 +191,16 @@ const UsersList = () => {
           </div>
         </div>
       )}
+
+      {/* Button to go to login page */}
+      <div className="flex justify-center mt-6">
+        <button
+          onClick={() => navigate('/')} // Navigates to the login page
+          className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition"
+        >
+          Go to Login
+        </button>
+      </div>
     </div>
   );
 };
